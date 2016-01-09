@@ -1,0 +1,28 @@
+<ion-view view-title="My Team">
+  <ion-content>
+
+  	<div class="">
+        <label class="item item-input">
+          <span class="input-label">Team Member</span>
+          <input type="text" ng-model="teamMember.name">
+        </label>
+        <label class="">
+          <button class="button button-block button-positive" type="button" ng-click="createNewTeamMember({id:null, name:teamMember.name})">Add to Team!</button>
+        </label>
+    </div>
+    <ion-list>
+      <ion-item ng-repeat="tm in team">
+        <!-- {{tm.id}} - {{tm.name}} -->
+    		<span ng-hide="editEnabled">
+                        {{tm.name}}
+                            <span href="#" ng-click="editEnabled=!editEnabled"><span class="ion ion-edit" ></span></span>
+            </span>
+            <span ng-show="editEnabled">
+                        <input ng-model="tm.name">
+                        <span href="#" ng-click="editEnabled=!editEnabled; editMember({id:tm.id}, {id:tm.id,name:tm.name})"><span class="ion ion-checkmark" ></span></span>
+            </span>
+        <span class="badge badge-assertive" ng-click="removeMember(tm)">X</span>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
